@@ -49,7 +49,7 @@ jobs:
         uses: soroverify/soroverify-action@main
         with:
           verifier-url: https://verify.soroverify.example.com
-          contract-id: CUJZDEGXDNCF32EPF3DHODZDOCIS2JHTLGMXGEDN73U55XTPLPFT7V4S
+          contract-id: CDNA2XPXQ5XEVG4J5S4CFD5XJ7RI7O5G3HBU3TALYXUMVA3KVMFW3RCE
           timeout-seconds: '900'
 
       - name: Print result
@@ -64,7 +64,7 @@ To report a `mismatch` result without failing the workflow (for example, to gate
         uses: soroverify/soroverify-action@main
         with:
           verifier-url: https://verify.soroverify.example.com
-          contract-id: CUJZDEGXDNCF32EPF3DHODZDOCIS2JHTLGMXGEDN73U55XTPLPFT7V4S
+          contract-id: CDNA2XPXQ5XEVG4J5S4CFD5XJ7RI7O5G3HBU3TALYXUMVA3KVMFW3RCE
           fail-on-mismatch: 'false'
 ```
 
