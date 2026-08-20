@@ -30014,10 +30014,11 @@ const submit_1 = __nccwpck_require__(7667);
 const validate_1 = __nccwpck_require__(397);
 function resolveSourceRepo(input) {
     if (input.length > 0) {
-        return (0, validate_1.validateSourceRepo)(input);
+        const ownerRepo = (0, validate_1.validateSourceRepo)(input);
+        return `https://github.com/${ownerRepo}`;
     }
     const { owner, repo } = github.context.repo;
-    return `${owner}/${repo}`;
+    return `https://github.com/${owner}/${repo}`;
 }
 function resolveSourceRev(input) {
     if (input.length > 0) {
@@ -30236,6 +30237,14 @@ function report(options) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.submitSubmission = submitSubmission;
 const errors_1 = __nccwpck_require__(3916);
+function formatIssues(issues) {
+    return issues
+        .filter((issue) => typeof issue.reason === 'string' && issue.reason.length > 0)
+        .map((issue) => typeof issue.field === 'string' && issue.field.length > 0
+        ? `${issue.field}: ${issue.reason}`
+        : issue.reason)
+        .join('; ');
+}
 function extractErrorMessage(body, fallback) {
     if (body && typeof body === 'object') {
         const candidate = body;
@@ -30244,6 +30253,20 @@ function extractErrorMessage(body, fallback) {
         }
         if (typeof candidate.error === 'string' && candidate.error.length > 0) {
             return candidate.error;
+        }
+        if (candidate.error && typeof candidate.error === 'object') {
+            const detail = candidate.error;
+            const issuesText = Array.isArray(detail.issues) && detail.issues.length > 0
+                ? formatIssues(detail.issues)
+                : '';
+            if (issuesText.length > 0) {
+                return typeof detail.code === 'string' && detail.code.length > 0
+                    ? `${detail.code}: ${issuesText}`
+                    : issuesText;
+            }
+            if (typeof detail.code === 'string' && detail.code.length > 0) {
+                return detail.code;
+            }
         }
     }
     return fallback;
