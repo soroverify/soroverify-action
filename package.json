@@ -1,0 +1,31 @@
+{
+  "name": "soroverify-action",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GitHub Action that submits a contract's source to a Soroverify verifier instance and reports the result as a check.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src test --ext .ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.9",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "nock": "^13.5.4",
+    "ts-jest": "^29.1.5",
+    "typescript": "^5.5.3"
+  }
+}

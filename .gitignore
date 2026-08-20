@@ -78,9 +78,10 @@ web_modules/
 .next
 out
 
+# dist/ is intentionally committed for this GitHub Action; do not ignore it
+
 # Nuxt.js build / generate output
 .nuxt
-dist
 .output
 
 # Gatsby files
