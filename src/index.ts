@@ -13,10 +13,11 @@ import {
 
 function resolveSourceRepo(input: string): string {
   if (input.length > 0) {
-    return validateSourceRepo(input);
+    const ownerRepo = validateSourceRepo(input);
+    return `https://github.com/${ownerRepo}`;
   }
   const { owner, repo } = github.context.repo;
-  return `${owner}/${repo}`;
+  return `https://github.com/${owner}/${repo}`;
 }
 
 function resolveSourceRev(input: string): string {
