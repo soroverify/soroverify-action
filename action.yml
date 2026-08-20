@@ -1,0 +1,39 @@
+name: 'Soroverify'
+description: 'Submit a contract source to a Soroverify verifier instance and report the verification result as a check.'
+author: 'Soroverify'
+
+inputs:
+  verifier-url:
+    description: 'Base URL of the Soroverify verifier instance to submit to.'
+    required: true
+  contract-id:
+    description: 'The contract identifier to verify.'
+    required: true
+  source-repo:
+    description: 'The source repository to verify, in owner/repo form. Defaults to the current repository.'
+    required: false
+  source-rev:
+    description: 'The source revision (commit SHA) to verify. Defaults to the current commit SHA.'
+    required: false
+  timeout-seconds:
+    description: 'Maximum time, in seconds, to wait for a terminal verification result before failing the action.'
+    required: false
+    default: '600'
+  fail-on-mismatch:
+    description: 'Whether to fail the action if the verification result is a mismatch.'
+    required: false
+    default: 'true'
+
+outputs:
+  status:
+    description: 'The final verification status (verified, mismatch, or inconclusive).'
+  submission-id:
+    description: 'The identifier assigned to the submission by the verifier.'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'shield'
+  color: 'blue'
