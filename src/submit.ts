@@ -1,19 +1,60 @@
 import { SubmissionRejectedError, VerifierRequestError } from './errors';
 import { SubmissionRequest, SubmissionResponse } from './types';
 
+interface ErrorIssue {
+  field?: string;
+  reason?: string;
+}
+
+interface ErrorDetail {
+  code?: string;
+  issues?: ErrorIssue[];
+}
+
 interface ErrorBody {
   message?: string;
-  error?: string;
+  error?: string | ErrorDetail;
+}
+
+function formatIssues(issues: ErrorIssue[]): string {
+  return issues
+    .filter((issue) => typeof issue.reason === 'string' && issue.reason.length > 0)
+    .map((issue) =>
+      typeof issue.field === 'string' && issue.field.length > 0
+        ? `${issue.field}: ${issue.reason as string}`
+        : (issue.reason as string),
+    )
+    .join('; ');
 }
 
 function extractErrorMessage(body: unknown, fallback: string): string {
   if (body && typeof body === 'object') {
     const candidate = body as ErrorBody;
+
     if (typeof candidate.message === 'string' && candidate.message.length > 0) {
       return candidate.message;
     }
+
     if (typeof candidate.error === 'string' && candidate.error.length > 0) {
       return candidate.error;
+    }
+
+    if (candidate.error && typeof candidate.error === 'object') {
+      const detail = candidate.error;
+      const issuesText =
+        Array.isArray(detail.issues) && detail.issues.length > 0
+          ? formatIssues(detail.issues)
+          : '';
+
+      if (issuesText.length > 0) {
+        return typeof detail.code === 'string' && detail.code.length > 0
+          ? `${detail.code}: ${issuesText}`
+          : issuesText;
+      }
+
+      if (typeof detail.code === 'string' && detail.code.length > 0) {
+        return detail.code;
+      }
     }
   }
   return fallback;
