@@ -1,3 +1,7 @@
+![soroverify-action](assets/soroverify-action.svg)
+
+[![CI](https://github.com/soroverify/soroverify-action/actions/workflows/ci.yml/badge.svg)](https://github.com/soroverify/soroverify-action/actions/workflows/ci.yml) [![License](https://img.shields.io/github/license/soroverify/soroverify-action)](https://github.com/soroverify/soroverify-action/blob/main/LICENSE)
+
 # soroverify-action
 
 A GitHub Action that submits your contract's source to a Soroverify verifier instance, waits for a result, and reports it as a check. It does not perform verification itself; it is a thin client for the `soroverify-verifier` API.

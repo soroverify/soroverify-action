@@ -1,0 +1,30 @@
+<svg width="1280" height="320" viewBox="0 0 1280 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"></stop>
+      <stop offset="100%" stop-color="#F97316"></stop>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="320" fill="url(#bg)"></rect>
+
+  <circle cx="180" cy="160" r="70" fill="none" stroke="#FDBA74" stroke-width="10"></circle>
+  <path d="M145 160 L175 190 L225 130" fill="none" stroke="#FDBA74" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"></path>
+
+  <path d="M320 160 H480" stroke="#FDBA74" stroke-width="6"></path>
+  <path d="M540 160 H700" stroke="#FDBA74" stroke-width="6"></path>
+
+  <rect x="480" y="120" width="60" height="80" rx="10" fill="none" stroke="#FDBA74" stroke-width="5"></rect>
+
+  <text x="760" y="135" fill="#FFF" font-family="Segoe UI, Arial" font-size="54" font-weight="700">
+        soroverify-action
+  </text>
+
+  <text x="760" y="190" fill="#FED7AA" font-family="Segoe UI, Arial" font-size="24">
+        GitHub Action for Automated Contract Verification
+  </text>
+
+  <text x="760" y="235" fill="#FDBA74" font-family="monospace" font-size="18">
+        Submit → Poll → Verify → Report
+  </text>
+</svg>
