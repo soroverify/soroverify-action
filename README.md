@@ -50,7 +50,7 @@ jobs:
 
       - name: Submit for verification
         id: verify
-        uses: soroverify/soroverify-action@main
+        uses: soroverify/soroverify-action@ab15106e10c54fb49863ea710b3a38d28c300536 # v0.1.0
         with:
           verifier-url: https://verify.soroverify.example.com
           contract-id: CDNA2XPXQ5XEVG4J5S4CFD5XJ7RI7O5G3HBU3TALYXUMVA3KVMFW3RCE
@@ -65,7 +65,7 @@ To report a `mismatch` result without failing the workflow (for example, to gate
 ```yaml
       - name: Submit for verification
         id: verify
-        uses: soroverify/soroverify-action@main
+        uses: soroverify/soroverify-action@ab15106e10c54fb49863ea710b3a38d28c300536 # v0.1.0
         with:
           verifier-url: https://verify.soroverify.example.com
           contract-id: CDNA2XPXQ5XEVG4J5S4CFD5XJ7RI7O5G3HBU3TALYXUMVA3KVMFW3RCE
